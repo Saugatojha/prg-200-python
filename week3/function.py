@@ -21,4 +21,4 @@ num2 = 18
 
 print("HCF:", hcf(num1, num2))
 print("LCM:", lcm(num1, num2))
-     
+      

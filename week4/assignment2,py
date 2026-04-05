@@ -1,0 +1,72 @@
+# we import tkinter tool for the screen of our gui 
+# we import random tool to generate random number 
+import tkinter as tk
+import random
+
+# tk.TK is being used to create a window
+# tital and goemtery is for window name and for the size 
+app = tk.Tk()
+app.title("Guess the Number")
+app.geometry("900x500")
+
+# secret number job is ot pick num betn 1 to 100 as the range is specidied 
+# attempts is used to count user guesses
+number = random.randint(1, 100)
+tries = 0
+
+# for heading of our app we use all these
+title_label = tk.Label(app, text="Number Guessing Game",
+                      font=("Arial", 14, "bold"), background="red",
+                      fg="black", padx=10, pady=5)
+title_label.pack()
+
+# prints these things 
+info_label = tk.Label(app, text="Guess a number from 1 to 100")
+info_label.pack(pady=5)
+
+input_box = tk.Entry(app)
+input_box.pack(pady=5)
+
+# will show too high too low and correct with the help of this part.
+output_label = tk.Label(app, text="", font=("Arial", 13), fg="blue")
+output_label.pack(pady=20)
+
+# shows number of guess user makes 
+tries_label = tk.Label(app, text="Attempts: 0", font=("Arial", 11))
+tries_label.pack(pady=5)
+
+# logic of this code 
+def check_number():
+    global number, tries
+    # inside it global allows function to use/update variables outside
+    # use to convert it to number
+    guess = int(input_box.get())
+    tries += 1
+    tries_label.config(text=f"Attempts: {tries}")
+   # logic of the code if the number is leess than the provide dnumber it will display it is low and if the number is high it will display higher 
+   # and the base case is that the number matches the secret number
+    if guess < number:
+        output_label.config(text="Number is low try again", fg="orange")
+    elif guess > number:
+        output_label.config(text="Number is high try again", fg="orange")
+    else:
+        output_label.config(text=f"Correct number", fg="green")
+
+    input_box.delete(0, tk.END)
+    # starts a new game 
+def reset_game():
+    global number, tries
+    number = random.randint(1, 100)
+    tries = 0
+    # clears the screen 
+    tries_label.config(text="Attempts: 0")
+    output_label.config(text="")
+    input_box.delete(0, tk.END)
+    # button clicked then runs the function 
+guess_button = tk.Button(app, text="Guess the number", command=check_number)
+guess_button.pack(pady=10)
+
+reset_button = tk.Button(app, text="Reset the game", command=reset_game)
+reset_button.pack(pady=5)
+
+app.mainloop()
