@@ -34,7 +34,7 @@ rate_entry.grid(row=3, column=1, padx=10, pady=5)
 
 # Result
 result_label = tk.Label(window, text="", font=("Arial", 13), fg="blue")
-result_label.grid(row=5, column=0, columnspan=2, pady=20)
+result_label.grid(row=5, column=2, columnspan=2, pady=20)
 
 # Function
 def calculate():
@@ -46,6 +46,6 @@ def calculate():
 
 # Button
 calculate_button = tk.Button(window, text="Calculate", command=calculate)
-calculate_button.grid(row=4, column=0, columnspan=2, pady=10)
+calculate_button.grid(row=4, column=3, columnspan=2, pady=10)
 
 window.mainloop()
